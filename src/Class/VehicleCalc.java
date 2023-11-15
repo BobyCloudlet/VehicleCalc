@@ -10,16 +10,20 @@ public class VehicleCalc {
     private short carAge;
     private String carRegistrationRegion; // Регион регистрации автомобиля
 
-    // Получить нологовую ставку по названию региона
-    private float getTax(String carRegistrationRegion){
+    // Получаем нологовую ставку по названию региона
+    private float getTaxRate(String carRegistrationRegion){
         Map<String,Float> tax = new HashMap<String,Float>();
-        tax.put("Минск", 61.0f);
-        tax.put("Гродно", 96.0f);
-        tax.put("Брест", 27.0f);
-        tax.put("Гомель", 66.0f);
-        tax.put("Могилев", 39.0f);
-        tax.put("Витебск", 69.0f);
+        tax.put("Минск", 5.0f);
+        tax.put("Гродно", 6.0f);
+        tax.put("Брест", 3.0f);
+        tax.put("Гомель", 6.0f);
+        tax.put("Могилев", 9.0f);
+        tax.put("Витебск", 9.0f);
         return tax.get(carRegistrationRegion);
+    }
+
+    public float distribution(short carPower, short carAge, String carRegistrationRegion){
+        return (getTaxRate(carRegistrationRegion) + carPower * 12 + (carAge * 0.5f))/100;
     }
 
     //GetSet//
